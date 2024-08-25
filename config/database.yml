@@ -59,6 +59,4 @@ test:
 production:
   <<: *default
   adapter: postgresql
-  database: furima_40729_production
-  username: furima_40729_user
-  password: <%= ENV["FURIMA_40729_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>
