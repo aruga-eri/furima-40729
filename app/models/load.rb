@@ -1,2 +1,0 @@
-class Load < ApplicationRecord
-end

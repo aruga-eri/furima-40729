@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_08_27_065502) do
+ActiveRecord::Schema[7.0].define(version: 2024_08_27_051342) do
   create_table "categories", charset: "utf8mb4", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -32,12 +32,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_08_27_065502) do
   end
 
   create_table "months", charset: "utf8mb4", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "orders", charset: "utf8mb4", force: :cascade do |t|
-    t.integer "price", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
