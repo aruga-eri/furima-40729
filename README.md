@@ -8,8 +8,8 @@
 | nickname           | string   | null: false               |
 | email              | string   | null: false, unique: true |
 | encrypted_password | string   | null: false               |
-| last_name1         | string   | null: false               |
-| first_name1        | string   | null: false               |
+| last_name         | string   | null: false               |
+| first_name        | string   | null: false               |
 | last_name_kana     | string   | null: false               |
 | first_name_kana    | string   | null: false               |
 | birthday           | day      | null: false               |
@@ -33,7 +33,7 @@
 | load_id          | integer    | null: false                    |
 | region_id        | integer    | null: false                    |
 | delivery_id      | integer    | null: false                    |
-| price            | string     | null: false                    |
+| price            | integer     | null: false                    |
 
 ### Association
 
