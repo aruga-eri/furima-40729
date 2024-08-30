@@ -10,11 +10,9 @@
 | encrypted_password | string   | null: false               |
 | last_name1         | string   | null: false               |
 | first_name1        | string   | null: false               |
-| last_name2         | string   | null: false               |
-| first_name2        | string   | null: false               |
-| year_id            | integer  | null: false               |
-| month_id           | integer  | null: false               |
-| day_id             | integer  | null: false               |
+| last_name_kana     | string   | null: false               |
+| first_name_kana    | string   | null: false               |
+| birthday           | day      | null: false               |
 
 ### Association
 
@@ -27,7 +25,7 @@
 
 | Column           | Type       | Options                        |
 | ---------------- | ---------- | ------------------------------ |
-| user_id          | references | null: false, foreign_key: true |
+| user             | references | null: false, foreign_key: true |
 | name             | string     | null: false                    |
 | explanation      | text       | null: false                    |
 | category_id      | integer    | null: false                    |
@@ -76,7 +74,7 @@
 
 | Column       | Type       | Options                        |
 | ------------ | ---------- | ------------------------------ |
-| user_id      | references | null: false, foreign_key: true |
+| user         | references | null: false, foreign_key: true |
 | item         | references | null: false, foreign_key: true |
 | text         | text       | null: false                    |
 
