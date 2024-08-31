@@ -31,7 +31,6 @@
 | category_id      | integer    | null: false                    |
 | situation_id     | integer    | null: false                    |
 | load_id          | integer    | null: false                    |
-| region_id        | integer    | null: false                    |
 | delivery_id      | integer    | null: false                    |
 | prefecture_id      | integer    | null: false                  |
 | price            | integer     | null: false                   |
