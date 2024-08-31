@@ -12,7 +12,7 @@
 | first_name        | string   | null: false               |
 | last_name_kana     | string   | null: false               |
 | first_name_kana    | string   | null: false               |
-| birthday           | day      | null: false               |
+| birthday           | date      | null: false               |
 
 ### Association
 
@@ -33,7 +33,8 @@
 | load_id          | integer    | null: false                    |
 | region_id        | integer    | null: false                    |
 | delivery_id      | integer    | null: false                    |
-| price            | integer     | null: false                    |
+| prefecture_id      | integer    | null: false                  |
+| price            | integer     | null: false                   |
 
 ### Association
 
