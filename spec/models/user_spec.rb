@@ -34,17 +34,17 @@ RSpec.describe User, type: :model do
     end
 
     context "新規登録できない場合" do
-      it "nicknameが空だと登録できない" do
+      it "nicknameが空だと登録できない" do  
         @user.nickname = ''
         @user.valid?
         expect(@user.errors.full_messages).to include("Nickname can't be blank")
       end
-      it "emailが空だと登録できない" do
+      it "emailが空だと登録できない" do  
         @user.email = ''
         @user.valid?
         expect(@user.errors.full_messages).to include("Email can't be blank")
       end
-      it "emailが既に登録しているユーザーと重複していると保存できない" do
+      it "emailが既に登録しているユーザーと重複していると保存できない" do  
         @user.save
         another_user = FactoryBot.build(:user)
         another_user.email = @user.email
@@ -62,7 +62,7 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include("Password must include both letters and numbers")
       end
-      it "パスワードは半角英数字混合でないと登録できない(英字のみ)" do
+      it "パスワードは半角英数字混合でないと登録できない(英字のみ)" do 
         @user.password = "abcdef"
         @user.password_confirmation = "abcdef"
         @user.valid?
@@ -74,23 +74,23 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include("Password is too short (minimum is 6 characters)")
       end
-      it "パスワード（確認）が空だと登録できない" do
+      it "パスワード（確認）が空だと登録できない" do 
         @user.password = "123456"
         @user.password_confirmation = ""
         @user.valid?
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
-      it "名字が全角（漢字・ひらがな・カタカナ）でないと登録できない" do
+      it "名字が全角（漢字・ひらがな・カタカナ）でないと登録できない" do  
         @user.last_name = "yamada"
         @user.valid?
         expect(@user.errors.full_messages).to include("Last name is invalid")
       end
-      it "名前が全角（漢字・ひらがな・カタカナ）でないと登録できない" do
+      it "名前が全角（漢字・ひらがな・カタカナ）でないと登録できない" do 
         @user.first_name = "rikutaro"
         @user.valid?
         expect(@user.errors.full_messages).to include("First name is invalid")
       end
-      it "名字のフリガナが全角（カタカナ）でないと登録できない" do
+      it "名字のフリガナが全角（カタカナ）でないと登録できない" do 
         @user.last_name_kana = "やまだ"
         @user.valid?
         expect(@user.errors.full_messages).to include("Last name kana is invalid")
