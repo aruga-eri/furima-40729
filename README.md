@@ -32,7 +32,7 @@
 | situation_id     | integer    | null: false                    |
 | load_id          | integer    | null: false                    |
 | delivery_id      | integer    | null: false                    |
-| prefecture_id      | integer    | null: false                  |
+| prefecture_id    | integer    | null: false                    |
 | price            | integer     | null: false                   |
 
 ### Association
