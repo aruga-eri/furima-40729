@@ -16,7 +16,7 @@ class Item < ApplicationRecord
   # アクティブストレージとのアソシエーション
   has_one_attached :image
 
-  with_options presence: ture do
+  with_options presence: true do
     validates :user
     validates :image
     validates :name
