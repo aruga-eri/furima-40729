@@ -26,13 +26,13 @@ class Item < ApplicationRecord
     validates :load_id
     validates :prefecture_id
     validates :delivery_id
-    validates :price, numericality: { greter_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
+    validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
   end
 
   # ジャンルの選択が「---」の時は保存不可
   with_options numericality: { other_than: 0 } do
     validates :category_id
-    validates :situation
+    validates :situation_id
     validates :load_id
     validates :prefecture_id
     validates :delivery_id
