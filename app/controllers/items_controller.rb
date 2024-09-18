@@ -13,11 +13,17 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-    @item.user = current_user
     if @item.save
-      redirect_to root_path
+      respond_to do |format|
+        format.html { redirect_to @item }
+        format.json { render :show, status: :created, location: @item }
+        format.turbo_stream { redirect_to @item }
+      end
     else
-      render :new
+      respond_to do |format|
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @item.errors, status: :unprocessable_entity }
+      end
     end
   end
 
