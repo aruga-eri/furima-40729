@@ -1,10 +1,10 @@
 <%= render "shared/header" %>
 
 <%# 商品の概要 %>
-<div class="item-show">
-  <div class="item-box">
-    <h2 class="name">
-      <%= @item.name %>
+<!-- <div class="item-show" > -->
+  <!-- <div class="item-box"> -->
+    <!-- <h2 class="name"> -->
+      <%= '商品名' %>
     </h2>
     <div class="item-img-content">
       <%= image_tag @item.image.variant(resize:'500x500') ,class:"item-box-img" %>
@@ -13,7 +13,7 @@
       <div class="sold-out">
         <span>Sold Out!!</span>
       </div>
-      <% end %>
+       <% end %>
       <%# //商品が売れている場合は、sold outを表示しましょう %>
     </div>
     <div class="item-price-box">

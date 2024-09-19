@@ -3,7 +3,7 @@ class Item < ApplicationRecord
 
   # テーブルとのアソシエーション
   belongs_to :user
-  has_one    :purchase
+  # has_one    :purchase
   has_many   :comments
 
   # アクティブハッシュとのアソシエーション
@@ -17,7 +17,6 @@ class Item < ApplicationRecord
   has_one_attached :image
 
   with_options presence: true do
-    validates :user
     validates :image
     validates :name
     validates :explanation
@@ -26,7 +25,9 @@ class Item < ApplicationRecord
     validates :load_id
     validates :prefecture_id
     validates :delivery_id
-    validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
+    validates :price,
+              numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999, only_integer: true },
+              format: { with: /\A[0-9]+\z/, message: '半角数字のみで入力してください' }
   end
 
   # ジャンルの選択が「---」の時は保存不可

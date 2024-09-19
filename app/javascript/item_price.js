@@ -1,5 +1,6 @@
-window.addEventListener('load', () => {
+function setPriceCalculation() {
   const priceInput = document.getElementById("item-price");
+
   if (priceInput) {
     priceInput.addEventListener("input", () => {
       const inputValue = priceInput.value;
@@ -16,4 +17,7 @@ window.addEventListener('load', () => {
   } else {
     console.error("Element with ID 'item-price' not found.");
   }
-});
+}
+
+window.addEventListener('load', setPriceCalculation);
+document.addEventListener('turbolinks:load', setPriceCalculation);

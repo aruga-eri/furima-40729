@@ -1,10 +1,10 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :set_item, only: [:show, :edit, :update, :destroy]
-  before_action :move_to_index, only: [:edit, :update, :destroy]
+  # before_action :set_item, only: [:edit, :update, :destroy]
+  # before_action :move_to_index, only: [:edit, :update, :destroy]
 
   def index
-    @items = Item.includes(:user).order('created_at DESC') # 修正箇所
+    # @items = Item.includes(:user).order('created_at DESC')
   end
 
   def new
@@ -16,19 +16,19 @@ class ItemsController < ApplicationController
 
     respond_to do |format|
       if @item.save
-        format.html { redirect_to @item, notice: 'Item was successfully created.' }
+        format.html { redirect_to root_path, notice: 'Item was successfully created.' }
         format.json { render :show, status: :created, location: @item }
-        format.turbo_stream { redirect_to @item }
+        # format.turbo_stream { redirect_to @item }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @item.errors, status: :unprocessable_entity }
+        # format.html { render :new, status: :unprocessable_entity }
+        # format.json { render json: @item.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  def show
-    @item = Item.find(params[:id])
-  end
+  # def show
+  # @item = Item.find(params[:id])
+  # end
 
   def edit
     @item ||= Item.find(params[:id])
@@ -61,7 +61,7 @@ class ItemsController < ApplicationController
 
   def item_params
     params.require(:item).permit(:image, :name, :explanation, :category_id, :situation_id, :load_id, :prefecture_id,
-                                 :delivery_id, :price)
+                                 :delivery_id, :price).merge(user_id: current_user.id)
   end
 
   def set_item
