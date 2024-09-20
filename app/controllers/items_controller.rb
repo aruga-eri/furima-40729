@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index]
   # before_action :set_item, only: [:edit, :update, :destroy]
   # before_action :move_to_index, only: [:edit, :update, :destroy]
 
@@ -18,10 +18,10 @@ class ItemsController < ApplicationController
       if @item.save
         format.html { redirect_to root_path, notice: 'Item was successfully created.' }
         format.json { render :show, status: :created, location: @item }
-        # format.turbo_stream { redirect_to @item }
       else
-        # format.html { render :new, status: :unprocessable_entity }
-        # format.json { render json: @item.errors, status: :unprocessable_entity }
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @item.errors, status: :unprocessable_entity }
+        # format.turbo_stream { redirect_to @item }
       end
     end
   end
@@ -52,9 +52,9 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    return unless @item.destroy
+    # return unless @item.destroy
 
-    redirect_to root_path
+    # redirect_to root_path
   end
 
   private
