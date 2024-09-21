@@ -30,26 +30,26 @@ class ItemsController < ApplicationController
   # @item = Item.find(params[:id])
   # end
 
-  def edit
-    @item ||= Item.find(params[:id])
-    Rails.logger.debug "current_user.id: #{current_user.id}"
-    Rails.logger.debug "@item: #{@item.inspect}"
+  # def edit
+  # @item ||= Item.find(params[:id])
+  # Rails.logger.debug "current_user.id: #{current_user.id}"
+  # Rails.logger.debug "@item: #{@item.inspect}"
 
-    if current_user.id != @item.user_id || @item.purchase.present?
-      redirect_to root_path
-    else
-      render :edit
-    end
-  end
+  # if current_user.id != @item.user_id || @item.purchase.present?
+  # redirect_to root_path
+  # else
+  # render :edit
+  # end
+  # end
 
-  def update
-    @item.update(item_params)
-    if @item.valid?
-      redirect_to item_path(@item)
-    else
-      render :edit
-    end
-  end
+  # def update
+  # @item.update(item_params)
+  # if @item.valid?
+  # redirect_to item_path(@item)
+  # else
+  # render :edit
+  # end
+  # end
 
   def destroy
     # return unless @item.destroy
@@ -63,12 +63,3 @@ class ItemsController < ApplicationController
     params.require(:item).permit(:image, :name, :explanation, :category_id, :situation_id, :load_id, :prefecture_id,
                                  :delivery_id, :price).merge(user_id: current_user.id)
   end
-
-  def set_item
-    @item = Item.find(params[:id])
-  end
-
-  def move_to_index
-    redirect_to root_path unless @item.user_id == current_user.id
-  end
-end

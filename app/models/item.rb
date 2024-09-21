@@ -26,8 +26,7 @@ class Item < ApplicationRecord
     validates :prefecture_id
     validates :delivery_id
     validates :price,
-              numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999, only_integer: true },
-              format: { with: /\A[0-9]+\z/, message: '半角数字のみで入力してください' }
+              numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999, only_integer: true }
   end
 
   # ジャンルの選択が「---」の時は保存不可
