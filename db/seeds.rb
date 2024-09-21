@@ -5,3 +5,21 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+
+user = User.create!(email: 'test@example.com', password: 'password')
+Item.create!(
+  [
+    {
+      user: user,
+      name: 'Example Item',
+      explanation: 'This is an example item.',
+      category_id: 1,
+      situation_id: 1,
+      load_id: 1,
+      prefecture_id: 1,
+      delivery_id: 1,
+      price: 500,
+      image: ActiveStorage::Blob.create_and_upload!(io: File.open('public/images/test_image.png'), filename: 'test_image.png')
+    }
+  ]
+)
