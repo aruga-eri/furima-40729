@@ -1,0 +1,56 @@
+<%= form_with(model: @item, local: true) do |f| %>
+  <% if @item.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@item.errors.count, "error") %> prohibited this item from being saved:</h2>
+      <ul>
+        <% @item.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :explanation %>
+    <%= f.text_area :explanation %>
+  </div>
+
+  <div class="field">
+    <%= f.label :category_id %>
+    <%= f.select :category_id, options_for_select(Category.all.collect {|c| [ c.name, c.id ] }) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :situation_id %>
+    <%= f.select :situation_id, options_for_select(Situation.all.collect {|s| [ s.name, s.id ] }) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :load_id %>
+    <%= f.select :load_id, options_for_select(Load.all.collect {|l| [ l.name, l.id ] }) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :prefecture_id %>
+    <%= f.select :prefecture_id, options_for_select(Prefecture.all.collect {|p| [ p.name, p.id ] }) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :delivery_id %>
+    <%= f.select :delivery_id, options_for_select(Delivery.all.collect {|d| [ d.name, d.id ] }) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :price %>
+    <%= f.number_field :price, id: 'item-price' %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "出品する" %>
+  </div>
+<% end %>
