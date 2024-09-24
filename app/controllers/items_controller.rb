@@ -30,8 +30,8 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
-  def edit
-    @item ||= Item.find(params[:id])
+  # def edit
+    # @item ||= Item.find(params[:id])
     # Rails.logger.debug "current_user.id: #{current_user.id}"
     # Rails.logger.debug "@item: #{@item.inspect}"
 
