@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, except: [:index]
-  # before_action :set_item, only: [:edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
+  # before_action :set_item, only: [:show, :edit, :update, :destroy]
   # before_action :move_to_index, only: [:edit, :update, :destroy]
 
   def index
@@ -26,21 +26,21 @@ class ItemsController < ApplicationController
     end
   end
 
-  # def show
-  # @item = Item.find(params[:id])
-  # end
+  def show
+    @item = Item.find(params[:id])
+  end
 
-  # def edit
-  # @item ||= Item.find(params[:id])
-  # Rails.logger.debug "current_user.id: #{current_user.id}"
-  # Rails.logger.debug "@item: #{@item.inspect}"
+  def edit
+    @item ||= Item.find(params[:id])
+    # Rails.logger.debug "current_user.id: #{current_user.id}"
+    # Rails.logger.debug "@item: #{@item.inspect}"
 
-  # if current_user.id != @item.user_id || @item.purchase.present?
-  # redirect_to root_path
-  # else
-  # render :edit
-  # end
-  # end
+    # if current_user.id != @item.user_id || @item.purchase.present?
+    # redirect_to root_path
+    # else
+    # render :edit
+    # end
+  end
 
   # def update
   # @item.update(item_params)
