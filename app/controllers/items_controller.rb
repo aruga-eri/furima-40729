@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, except: [:index]
-  # before_action :set_item, only: [:edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
+  # before_action :set_item, only: [:show, :edit, :update, :destroy]
   # before_action :move_to_index, only: [:edit, :update, :destroy]
 
   def index
@@ -26,9 +26,9 @@ class ItemsController < ApplicationController
     end
   end
 
-  # def show
-  # @item = Item.find(params[:id])
-  # end
+  def show
+    @item = Item.find(params[:id])
+  end
 
   # def edit
   # @item ||= Item.find(params[:id])
