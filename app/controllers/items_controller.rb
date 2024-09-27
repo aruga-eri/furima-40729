@@ -28,14 +28,9 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
   end
 
   def edit
-    if current_user.id != @item.user_id || @item.purchase.blank?
-    else
-      redirect_to root_path
-    end
   end
 
   def update
