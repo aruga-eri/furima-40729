@@ -1,7 +1,8 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  # before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_item, only: [:show, :edit, :update]
   # before_action :move_to_index, only: [:edit, :update, :destroy]
+  before_action :check_user, only: [:edit, :update]
 
   def index
     @items = Item.includes(:user).order('created_at DESC')
@@ -27,29 +28,18 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
   end
 
-  # def edit
-  # @item ||= Item.find(params[:id])
-  # Rails.logger.debug "current_user.id: #{current_user.id}"
-  # Rails.logger.debug "@item: #{@item.inspect}"
+  def edit
+  end
 
-  # if current_user.id != @item.user_id || @item.purchase.present?
-  # redirect_to root_path
-  # else
-  # render :edit
-  # end
-  # end
-
-  # def update
-  # @item.update(item_params)
-  # if @item.valid?
-  # redirect_to item_path(@item)
-  # else
-  # render :edit
-  # end
-  # end
+  def update
+    if @item.update(item_params)
+      redirect_to item_path(@item), notice: 'Item was successfully updated.'
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
 
   def destroy
     # return unless @item.destroy
@@ -59,8 +49,18 @@ class ItemsController < ApplicationController
 
   private
 
+  def set_item
+    @item = Item.find(params[:id])
+  end
+
   def item_params
     params.require(:item).permit(:image, :name, :explanation, :category_id, :situation_id, :load_id, :prefecture_id,
                                  :delivery_id, :price).merge(user_id: current_user.id)
   end
+end
+
+def check_user
+  return if current_user.id == @item.user_id
+
+  redirect_to root_path, alert: '他のユーザーの情報を編集することはできません。'
 end
