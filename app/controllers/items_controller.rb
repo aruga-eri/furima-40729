@@ -42,9 +42,9 @@ class ItemsController < ApplicationController
 
   def destroy
     if @item.destroy
-      redirect_to items_path, notice: 'Item was successfully deleted.'
+      redirect_to root_path, notice: 'Item was successfully deleted.'
     else
-      redirect_to item_path(@item), alert: 'Failed to delete the item.'
+      redirect_to root_path(@item), alert: 'Failed to delete the item.'
     end
   end
 
