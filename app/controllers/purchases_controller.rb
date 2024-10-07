@@ -1,6 +1,7 @@
 class PurchasesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_item, only: [:index, :create]
+  before_action :check_item_status, only: [:index, :create]
 
   def index
     gon.public_key = ENV['PAYJP_PUBLIC_KEY']
@@ -26,6 +27,15 @@ class PurchasesController < ApplicationController
   end
 
   private
+
+  def check_item_status
+    # 出品者が商品購入ページを表示しないためのチェック
+    redirect_to root_path and return if current_user.id == @item.user_id
+    # 売却済みの商品購入ページを表示しないためのチェック
+    return unless @item.purchase.present?
+
+    redirect_to root_path and return
+  end
 
   def set_item
     @item = Item.find(params[:item_id])
