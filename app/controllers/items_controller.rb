@@ -30,6 +30,15 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    @item ||= Item.find(params[:id])
+    Rails.logger.debug "current_user.id: #{current_user.id}"
+    Rails.logger.debug "@item: #{@item.inspect}"
+
+    if current_user.id != @item.user_id || @item.purchase.present?
+      redirect_to root_path
+    else
+      render :edit
+    end
   end
 
   def update
