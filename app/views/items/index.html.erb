@@ -132,7 +132,6 @@
           <%= link_to item_path(item.id) do %>
             <div class='item-img-content'>
               <%= image_tag item.image.variant(resize: '500x500'), class: 'item-image' if item.image.attached? %>
-          <%# 商品が売れていればsold outを表示しましょう %>
               <% if item.purchase != nil %>
                 <div class='sold-out'>
                   <span>Sold Out!!</span>
@@ -146,7 +145,6 @@
                 <div class='star-btn'>
                   <%= image_tag "star.png", class:"star-icon" %>
                   <span class='star-count'>0</span>
-      <%# //商品が売れていればsold outを表示しましょう %>
                 </div>
               </div>
             </div>

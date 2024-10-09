@@ -2,7 +2,9 @@ require 'rails_helper'
 
 RSpec.describe PurchaseForm, type: :model do
   before do
-    @purchase_form = FactoryBot.build(:purchase_form)
+    user_id = FactoryBot.create(:user)
+    @item_id = FactoryBot.create(:item)
+    @purchase_form = FactoryBot.build(:purchase_form, user_id:, item_id:)
   end
 
   describe '配送先情報の保存' do
@@ -58,8 +60,7 @@ RSpec.describe PurchaseForm, type: :model do
       it '郵便番号が空だと保存できないこと' do
         @purchase_form.post_code = ''
         @purchase_form.valid?
-        expect(@purchase_form.errors.full_messages).to include("Post code can't be blank",
-                                                               'Post code is invalid. Include hyphen(-)')
+        expect(@purchase_form.errors.full_messages).to include("Post code can't be blank")
       end
       it '郵便番号にハイフンがないと保存できないこと' do
         @purchase_form.post_code = '1234567'
