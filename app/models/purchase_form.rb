@@ -14,25 +14,16 @@ class PurchaseForm
   end
 
   def save
-    user_id_value = user_id
-    item_id_value = item_id
-    purchase = Purchase.create(user_id: user_id_value, item_id: item_id_value)
-
-    post_code_value = post_code
-    prefecture_id_value = prefecture_id
-    municipality_value = municipality
-    house_number_value = house_number
-    building_value = building
-    phone_value = phone
+    purchase = Purchase.create(user_id:, item_id:)
 
     Address.create(
       purchase_id: purchase.id,
-      post_code: post_code_value,
-      prefecture_id: prefecture_id_value,
-      municipality: municipality_value,
-      house_number: house_number_value,
-      building: building_value,
-      phone: phone_value
+      post_code:,
+      prefecture_id:,
+      municipality:,
+      house_number:,
+      building:,
+      phone:
     )
   end
 end
